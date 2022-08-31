@@ -173,10 +173,16 @@ function countWords(str) {
     str = str.trim()
     str = str.split(" ")
     console.log(str)
-    return str.length
+    let result = str.reduce((a,b) => {
+        if(b != '') {
+            a++
+        }
+        return a
+    }, 0)
+    return result
 }
 
-console.log(countWords("   xin chao cac ban"));
+console.log(countWords("   xin   chao   cac ban"));
 
 // String 02
 function statisticsWords(str) {
@@ -189,7 +195,7 @@ function statisticsWords(str) {
     return result
 }
 
-console.log(statisticsWords("easy      frontend          easy"));
+console.log(statisticsWords("   easy      frontend          easy"));
 
 
 // String 03

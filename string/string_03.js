@@ -1,11 +1,9 @@
 function statisticsCharacters(str) {
-    
-    console.log(str.split(''));
-    let chars = new Set(str.split(''))
-    console.log(chars);
-    chars.forEach(item => {
-        
-    })
+    const strArr = str.split('')
+    return strArr.reduce((a,b) => {
+        a[b] = a[b] + 1 || 1
+        return a
+    }, {})
 }
 
 

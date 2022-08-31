@@ -11,6 +11,6 @@ function findLastPerfectSquare(numberList) {
     return undefined
 }   
 
-let n = [2,-1,3,2,1,5, 4,6,8, 9, 1, 16,7]
+let y = [2,-1,3,2,1,5, 4,6,8, 9, 1, 16,7]
 
-console.log(findLastPerfectSquare(n));
+console.log(findLastPerfectSquare(y));

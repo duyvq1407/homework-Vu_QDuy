@@ -201,10 +201,12 @@ function statisticsCharacters(str) {
     return strArr.reduce((a,b) => {
         if(b == ' ') {
             a['space'] = a['space'] + 1 || 1
-        } else{
+        } else {
             a[b] = a[b] + 1 || 1
         }
         return a
     }, {})
 }
 console.log(statisticsCharacters("aa vv ccc"));
+
+

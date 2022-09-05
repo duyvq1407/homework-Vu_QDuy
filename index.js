@@ -201,15 +201,15 @@ console.log(statisticsWords("   easy      frontend          easy"));
 // String 03
 function statisticsCharacters(str) {
     const strArr = str.split('')
-    let chars = new Set(strArr)
-    console.log(chars);
-    chars.forEach(item => {
-        console.log(item);
-        console.log(str);
-        console.log(strArr.split(item));
-    })
+    return strArr.reduce((a,b) => {
+        if(b == ' ') {
+            a['space'] = a['space'] + 1 || 1
+        } else{
+            a[b] = a[b] + 1 || 1
+        }
+        return a
+    }, {})
 }
-
 console.log(statisticsCharacters("aa vv ccc"));
 
 

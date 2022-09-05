@@ -25,26 +25,22 @@ function hasFibonaciNumber(numberList) {
         listFibonaciNumber = [0,1];
     while(listFibonaciNumber[i] <= 100){
         i++;       
-        listFibonaciNumber[i] = listFibonaciNumber[i-1] + listFibonaciNumber[i-2]
+        let nextFibonaciNumber = listFibonaciNumber[i-1] + listFibonaciNumber[i-2];
+        if(nextFibonaciNumber < 100){
+            listFibonaciNumber.push(nextFibonaciNumber)
+        }
     }
-    listFibonaciNumber.pop()
-    console.log(listFibonaciNumber)
     return numberList.some((item) => listFibonaciNumber.includes(item))
 }
 
-
-let x = [4,6,7,5]
-
-console.log(hasFibonaciNumber(x));
+console.log(hasFibonaciNumber([4,6,7,5]));
 
 
 // Array count 05
 function countNumbersNotInB(a,b) {
     let count = 0;
     a.forEach(item => {
-        if (!b.includes(item)) {
-            count++;
-        }
+        if (!b.includes(item)) count++;
     });
     return count;
 }
@@ -54,26 +50,24 @@ console.log(countNumbersNotInB([1,2,3],[2,3,4]));
 // Array find 05
 function findSecondLargestNumber(numberList){
     if (numberList.length <= 1) return undefined
-    const numberListSort = [...numberList].sort((a,b) => {console.log(a, b);})
+    const numberListSort = [...numberList].sort((a,b) => b - a)
     return numberListSort[1]
     // let newNumberList = numberList.filter(item => item !== Math.max(...numberList))
     // return Math.max(...newNumberList)
 }
 
-let n = [-1, 1, 2, 3, 4, 6, 4]
-
-console.log(findSecondLargestNumber(n))
+console.log(findSecondLargestNumber([-1, 1, 2, 3, 4, 6, 6]))
 
 // Array find 
+const isPerfectSquare = (n) => {
+    return parseInt(Math.sqrt(n)) === Math.sqrt(n) ? true : false
+}
+
 function findLastPerfectSquare(numberList) {
-    for(let result of numberList.reverse()){
-        if (isPerfectSquare(result)) {
-            return result
-        }
+    for (let i = numberList.length - 1; i > 0; i--) {
+        if (isPerfectSquare(numberList[i])) return numberList[i]
     }
-    return undefined
+    return null
 }   
 
-let y = [2,-1,3,2,1,5, 4,6,8, 9, 1, 16,7]
-
-console.log(findLastPerfectSquare(y));
+console.log(findLastPerfectSquare([2,-1,3,2,1,5, 4,6,8, 9, 1, 16,7]));

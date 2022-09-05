@@ -4,10 +4,8 @@
 
 // String 01
 function countWords(str) {
-    str = str.trim()
-    str = str.split(" ")
-    console.log(str)
-    let result = str.reduce((a,b) => {
+    let newStr = str.trim().split(" ");
+    let result = newStr.reduce((a,b) => {
         if(b != '') {
             a++
         }
@@ -21,7 +19,8 @@ console.log(countWords("   xin   chao   cac ban"));
 
 // String 02
 function statisticsWords(str) {
-    let result = str.trim().split(" ").reduce((a,b) => {
+    let newStr = str.trim().split(" ");
+    let result = newStr.reduce((a,b) => {
         if(b != '') {
             a[b] = a[b] + 1 || 1
         }

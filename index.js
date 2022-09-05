@@ -1,6 +1,5 @@
 // ---------------NUMBER-----------------
 
-
 // Number 01
 const isIncreasingNumber = (n) => { 
     let arrNum = n.toString().split('')
@@ -23,9 +22,6 @@ const isIncreasingNumberByDistance = (n,x) => {
     return true
 }
 
-console.log(isIncreasingNumberByDistance(11,1));
-console.log(isIncreasingNumberByDistance(123,1));
-console.log(isIncreasingNumberByDistance(135,2));
 console.log(isIncreasingNumberByDistance(1358,2));
 
 // Number 04
@@ -184,6 +180,7 @@ function countWords(str) {
 
 console.log(countWords("   xin   chao   cac ban"));
 
+
 // String 02
 function statisticsWords(str) {
     let result = str.trim().split(" ").reduce((a,b) => {
@@ -201,15 +198,13 @@ console.log(statisticsWords("   easy      frontend          easy"));
 // String 03
 function statisticsCharacters(str) {
     const strArr = str.split('')
-    let chars = new Set(strArr)
-    console.log(chars);
-    chars.forEach(item => {
-        console.log(item);
-        console.log(str);
-        console.log(strArr.split(item));
-    })
+    return strArr.reduce((a,b) => {
+        if(b == ' ') {
+            a['space'] = a['space'] + 1 || 1
+        } else{
+            a[b] = a[b] + 1 || 1
+        }
+        return a
+    }, {})
 }
-
 console.log(statisticsCharacters("aa vv ccc"));
-
-

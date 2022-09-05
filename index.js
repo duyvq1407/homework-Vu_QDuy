@@ -187,6 +187,9 @@ console.log(countWords("   xin   chao   cac ban"));
 // String 02
 function statisticsWords(str) {
     let result = str.trim().split(" ").reduce((a,b) => {
+        if(b == ' ') {
+            a['space'] = a[b] + 1 || 1
+        }
         if(b != '') {
             a[b] = a[b] + 1 || 1
         }

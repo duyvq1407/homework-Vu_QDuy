@@ -45,3 +45,6 @@ function statisticsCharacters(str) {
     }, {})
 }
 console.log(statisticsCharacters("aa vv ccc"));
+
+var regex = new RegExp('\W')
+console.log(regex.test('-'));

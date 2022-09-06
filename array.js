@@ -49,14 +49,26 @@ console.log(countNumbersNotInB([1,2,3],[2,3,4]));
 
 // Array find 05
 function findSecondLargestNumber(numberList){
-    if (numberList.length <= 1) return undefined
-    const numberListSort = [...numberList].sort((a,b) => b - a)
-    return numberListSort[1]
+    if (numberList.length <= 1) 
+        return null;
+    if(!numberList.some(item => item !== numberList[0])) 
+        return null;
     // let newNumberList = numberList.filter(item => item !== Math.max(...numberList))
     // return Math.max(...newNumberList)
+    let max = numberList[0],
+        secondMax = numberList[0];
+    for (let i = 0; i < numberList.length; i++) {
+        if (numberList[i] > max) {
+            secondMax = max;
+            max = numberList[i];
+        } else if(numberList[i] > secondMax) { 
+            secondMax = numberList[i];
+        }
+    }
+    return secondMax
 }
 
-console.log(findSecondLargestNumber([-1, 1, 2, 3, 4, 6, 6]))
+console.log(findSecondLargestNumber([1,1,2,3,3,4]))
 
 // Array find 
 const isPerfectSquare = (n) => {

@@ -21,13 +21,9 @@ console.log(myFindIndex(arrString, "c"));
 console.log("___________myMap___________")
 
 function myMap(myArray, callback) {
-    if (callback === undefined) {
-        return "Error."
-    }
     let newArray  = [];
     for (let i = 0; i < myArray.length; i++) {
         newArray[i] = callback(myArray[i], i, myArray);
-                    //callback(currentValue, currentIndex, array)  
     }
     return newArray;
 }
@@ -40,19 +36,15 @@ console.log(newArr);
 console.log("___________myReduce___________")
 
 function myReduce(myArray, callback, initialValue) {
-    if (callback === undefined) {
-        return "Error."
-    }
-    let newArr = [...myArray]
-    let result = initialValue;
-    for (let i = 0; i < newArr.length; i++) {
-        result = callback(result, newArr[i], i, myArray) 
-            // callback(result, currentValue, currentIndex, arr)
+    
+    let result = initialValue ? initialValue : myArray[0];
+    for (let i = 0; i < myArray.length; i++) {
+        result = callback(result, myArray[i], i, myArray) 
     }
     return result;
 }
 
-console.log(myReduce(arrNumber, (a,b, index, arr) => a += b,0))
+console.log(myReduce(arrNumber, (a,b, index, arr) => a += b))
 
 
 
@@ -61,20 +53,13 @@ console.log(myReduce(arrNumber, (a,b, index, arr) => a += b,0))
 console.log("___________myEvery___________")
 
 function myEvery(myArray, callback) {
-    if (callback === undefined) {
-        return "Error."
-    }
-    let newArray = [...myArray];
-    for (let i = 0; i < newArray.length; i++) {
-        if (typeof callback(newArray[i], i, myArray) !== Boolean) {
-            return false
-        }
-        if(callback(newArray[i], i, myArray) === false) return false
+    for (let i = 0; i < myArray.length; i++) {
+        if(!callback(myArray[i], i, myArray)) return false
     }
     return true
 }
 
-console.log(myEvery(arrString, (item, index, arr) => item === "a"))
+console.log(myEvery(arrString, (item, index, arr) => console.log(1)))
 
 
 
@@ -84,7 +69,7 @@ console.log("___________mySort___________")
 function mySort(myArray, callback) {
     if (callback === undefined) {
         callback = function (a,b) {
-            return a.toString().localeCompare(b)
+            return a.toString().localeCompare(b.toString())
         }
     }
     let temp;
@@ -100,7 +85,6 @@ function mySort(myArray, callback) {
     return myArray;
 }
 const arrNum0 = [1,2,3,110,4];
-console.log(mySort(arrNum0))
 
 
 
@@ -120,12 +104,10 @@ function myFlat(myArray, depth) {
             }
         }
         newArray = tempArr;
-        if (newArray.join(" ").indexOf(",") === -1) {
-            break;
-        }
+        if(newArray.every((item) => !Array.isArray(item))) break;
     }
     return newArray
 }
 const arr2 = [0, 1, 2, [[[3, 4]]], [[[[1,2,3]]]]];
-const arr3 = [1,[0, [[[3,3]]],[[9]]],7]
-console.log(myFlat(arr3, Infinity))
+const arr3 = [1,[0, [[[3,3]]],[[9]]],7, "12kadkhl"]
+console.log(myFlat(arr3, 2))

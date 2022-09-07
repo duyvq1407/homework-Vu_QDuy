@@ -3,6 +3,7 @@ const arrString = ['a', 'b', 'c', 'd', 'e']
 const arrNumber = [1, 11, 7, 9, 3, 4, 5, 6];
 
 console.log("___________myFindIndex___________")
+
 function myFindIndex(myArray, elementToLookFor) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i] === elementToLookFor) {
@@ -18,6 +19,7 @@ console.log(myFindIndex(arrString, "c"));
 
 
 console.log("___________myMap___________")
+
 function myMap(myArray, callback) {
     if (callback === undefined) {
         return "Error."
@@ -36,6 +38,7 @@ console.log(newArr);
 
 
 console.log("___________myReduce___________")
+
 function myReduce(myArray, callback, initialValue) {
     if (callback === undefined) {
         return "Error."
@@ -56,6 +59,7 @@ console.log(myReduce(arrNumber, (a,b, index, arr) => a += b,0))
 
 
 console.log("___________myEvery___________")
+
 function myEvery(myArray, callback) {
     if (callback === undefined) {
         return "Error."
@@ -76,6 +80,7 @@ console.log(myEvery(arrString, (item, index, arr) => item === "a"))
 
 
 console.log("___________mySort___________")
+
 function mySort(myArray, callback) {
     if (callback === undefined) {
         callback = function (a,b) {
@@ -103,6 +108,7 @@ console.log(mySort(arrNum0, (a,b) => b-a))
 
 
 console.log("___________myFlat___________")
+
 function myFlat(myArray, depth) {
     let newArray  = [...myArray],
         tempArr = [...myArray];
@@ -121,7 +127,5 @@ function myFlat(myArray, depth) {
 }
 const arr2 = [0, 1, 2, [[[3, 4]]], [[[[1,2,3]]]]];
 const arr3 = [1,[0, [[[3,3]]],[[9]]],7]
-console.log("--Array.Flat--")
-console.log(arr3.flat(3))
 console.log("--myFlat--");
 console.log(myFlat(arr3,Infinity))

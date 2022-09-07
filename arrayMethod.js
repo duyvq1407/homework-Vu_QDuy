@@ -120,9 +120,12 @@ function myFlat(myArray, depth) {
             }
         }
         newArray = tempArr;
+        if (newArray.join(" ").indexOf(",") === -1) {
+            break;
+        }
     }
     return newArray
 }
 const arr2 = [0, 1, 2, [[[3, 4]]], [[[[1,2,3]]]]];
 const arr3 = [1,[0, [[[3,3]]],[[9]]],7]
-console.log(myFlat(arr3))
+console.log(myFlat(arr3, Infinity))

@@ -69,7 +69,7 @@ function statisticsWords2(str) {
     return result
 }
 
-console.log(statisticsWords("   easy   -alskl..   frontend  1.234.diuahi    $(*&^*!#^&$*Hù^*@&($*)@?  easy"));
+console.log(statisticsWords2("   easy   -alskl..   frontend  1.234.diuahi    $(*&^*!#^&$*Hù^*@&($*)@?  easy"));
 
 
 // String 03

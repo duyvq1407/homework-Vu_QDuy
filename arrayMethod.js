@@ -1,3 +1,13 @@
+const checkArguments = function(array, callback) {
+    if(typeof array !== 'object') {
+        throw new Error(`${array} is not an object`);
+    }
+    if(typeof callback !== "function") {
+        throw new Error(`${callback} is not a function`)
+    }
+}
+
+
 const arrObject = [{name: 'Product A', id: 1}, {name: 'Product B', id: 2}];
 const arrString = ['a', 'b', 'c', 'd', 'e']
 const arrNumber = [1, 11, 7, 9, 3, 4, 5, 6];
@@ -21,14 +31,15 @@ console.log(myFindIndex(arrString, "c"));
 console.log("___________myMap___________")
 
 function myMap(myArray, callback) {
-    let newArray  = [];
+    checkArguments(myArray, callback);
+    const newArray  = [];
     for (let i = 0; i < myArray.length; i++) {
         newArray[i] = callback(myArray[i], i, myArray);
     }
     return newArray;
 }
-const newArr = myMap(arrNumber, (item, index, arr) => "updated")
-console.log(newArr);
+// const newArr = myMap(arrNumber, ()=> {})
+// console.log(newArr)
 
 
 
@@ -36,15 +47,16 @@ console.log(newArr);
 console.log("___________myReduce___________")
 
 function myReduce(myArray, callback, initialValue) {
-    
+    checkArguments(myArray, callback);    
     let result = initialValue ? initialValue : myArray[0];
-    for (let i = 0; i < myArray.length; i++) {
+    let initialIndex = initialValue ? 0 : 1;
+    for (let i = initialIndex; i < myArray.length; i++) {
         result = callback(result, myArray[i], i, myArray) 
     }
     return result;
 }
 
-console.log(myReduce(arrNumber, (a,b, index, arr) => a += b))
+console.log(myReduce(arrNumber, (a,b) => a += b, 0))
 
 
 
@@ -53,21 +65,21 @@ console.log(myReduce(arrNumber, (a,b, index, arr) => a += b))
 console.log("___________myEvery___________")
 
 function myEvery(myArray, callback) {
+    checkArguments(myArray, callback);
     for (let i = 0; i < myArray.length; i++) {
         if(!callback(myArray[i], i, myArray)) return false
     }
     return true
 }
 
-console.log(myEvery(arrString, (item, index, arr) => console.log(1)))
-
+console.log(myEvery(arrString, (a) => a===1))
 
 
 
 console.log("___________mySort___________")
 
 function mySort(myArray, callback) {
-    if (callback === undefined) {
+    if (!callback) {
         callback = function (a,b) {
             return a.toString().localeCompare(b.toString())
         }
@@ -85,7 +97,7 @@ function mySort(myArray, callback) {
     return myArray;
 }
 const arrNum0 = [1,2,3,110,4];
-
+console.log(mySort(arrNum0));
 
 
 

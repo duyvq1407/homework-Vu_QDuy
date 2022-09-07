@@ -110,10 +110,10 @@ console.log("___________myFlat___________")
 function myFlat(myArray, depth) {
     let newArray  = [...myArray],
         tempArr = [...myArray];
-    if(depth === undefined) depth = 1;
-    else if (depth <= 0 || isNaN(depth)) return newArray;
+    if (depth <= 0 || isNaN(depth)) return newArray;
+    let count = depth  ? depth : 1;
 
-    for(var j = 0; j < depth; j++){
+    for(var j = 0; j < count; j++){
         for (let i = 0; i < newArray.length; i++) {
             if(Array.isArray(newArray[i])){
                 tempArr.splice(i, 1,...newArray[i]);
@@ -125,5 +125,4 @@ function myFlat(myArray, depth) {
 }
 const arr2 = [0, 1, 2, [[[3, 4]]], [[[[1,2,3]]]]];
 const arr3 = [1,[0, [[[3,3]]],[[9]]],7]
-console.log("--myFlat--");
-console.log(myFlat(arr3,Infinity))
+console.log(myFlat(arr3))

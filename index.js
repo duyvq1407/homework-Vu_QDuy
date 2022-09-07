@@ -94,15 +94,13 @@ function mySort(myArray, callback) {
                 temp = myArray[i];
                 myArray[i] = myArray[j];
                 myArray[j] = temp;
-            } else  {
-                break;
             }
         }
     }
     return myArray;
 }
 const arrNum0 = [1,2,3,110,4];
-console.log(mySort(arrNum0, (a,b) => b-a))
+console.log(mySort(arrNum0))
 
 
 

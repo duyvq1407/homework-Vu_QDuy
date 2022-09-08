@@ -48,16 +48,22 @@ console.log("___________myReduce___________")
 
 function myReduce(myArray, callback, initialValue) {
     checkArguments(myArray, callback);    
-    let result = initialValue ? initialValue : myArray[0];
-    let initialIndex = initialValue ? 0 : 1;
+    let result, initialIndex = 0;
+    if (initialValue !== undefined) {
+        result = initialValue;
+    } else{
+        result = myArray[0]
+        initialIndex = 1
+    }
     for (let i = initialIndex; i < myArray.length; i++) {
         result = callback(result, myArray[i], i, myArray) 
     }
     return result;
 }
 
-console.log(myReduce(arrNumber, (a,b) => a += b, 0))
-
+// console.log(myReduce(arrNumber, (a,b) => {console.log(a);}, 0))
+console.log(arrString.reduce((a,b)  => {console.log(a); return a+b}, null))
+console.log(myReduce(arrString,(a,b)  => {console.log(a); return a+b}, null))
 
 
 

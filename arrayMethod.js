@@ -9,21 +9,37 @@ const checkArguments = function(array, callback) {
 
 
 const arrObject = [{name: 'Product A', id: 1}, {name: 'Product B', id: 2}];
-const arrString = ['a', 'b', 'c', 'd', 'e']
 const arrNumber = [1, 11, 7, 9, 3, 4, 5, 6];
 
 console.log("___________myFindIndex___________")
 
-function myFindIndex(myArray, elementToLookFor) {
-    for (let i = 0; i < myArray.length; i++) {
-        if (myArray[i] === elementToLookFor) {
-            return i;
+// function myFindIndex(myArray, elementToLookFor) {
+//     for (let i = 0; i < myArray.length; i++) {
+//         if (myArray[i] === elementToLookFor) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// }
+
+function myFindIndex(myArray, callback) {
+    if(typeof callback === 'function'){
+        for (let i = 0; i < myArray.length; i++) {
+            if (callback(myArray[i], i, myArray)) {
+                return i;
+            }
+        }
+    } else {
+        for (let i = 0; i < myArray.length; i++) {
+            if (myArray[i] === callback) return i;
         }
     }
     return -1;
 }
 
-console.log(myFindIndex(arrString, "c"));
+const arrString = ['a', 'b', 'c', 'd', 'e']
+console.log(myFindIndex(arrString, 'e'));
+console.log(arrString.findIndex(1));
 
 
 
@@ -62,8 +78,8 @@ function myReduce(myArray, callback, initialValue) {
 }
 
 // console.log(myReduce(arrNumber, (a,b) => {console.log(a);}, 0))
-console.log(arrString.reduce((a,b)  => {console.log(a); return a+b}, null))
-console.log(myReduce(arrString,(a,b)  => {console.log(a); return a+b}, null))
+console.log(arrString.reduce((a,b)  => {return a+b}, null))
+console.log(myReduce(arrString,(a,b)  => {return a+b}, null))
 
 
 
@@ -127,5 +143,5 @@ function myFlat(myArray, depth) {
     return newArray
 }
 const arr2 = [0, 1, 2, [[[3, 4]]], [[[[1,2,3]]]]];
-const arr3 = [1,[0, [[[3,3]]],[[9]]],7, "12kadkhl"]
+const arr3 = [1,[0, [[[3,3]]],[[9]]],7, "12kadkhl"];
 console.log(myFlat(arr3, 2))

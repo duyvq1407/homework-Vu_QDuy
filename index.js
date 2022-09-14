@@ -32,12 +32,9 @@ const getApi = (keys) => {
     Promise.allSettled(requests)
     .then((results) => {
       results.forEach((result) => {
-        if (result.status === "fulfilled") {
-          if (result.value.ok) {
-            result.value.json().then(res => console.log(res.items[0]));
-          }
-        }
-        if (result.status === "rejected" || !result.value.ok) {
+        if (result.status === "fulfilled" && result.value.ok) {
+          result.value.json().then(res => console.log(res.items[0]));
+        }else if (result.status === "rejected" || !result.value.ok) {
           errorKeys.push(result.value.url)
         }
       });
@@ -45,7 +42,7 @@ const getApi = (keys) => {
     }).then(res => {getApi(res)})
     
   }
-  };  
+};  
 
 let keys = ['swift','rust','javascript','react', 'rx','ruby','rails','php','objective-c','html','css','pug']
 getApi(keys)

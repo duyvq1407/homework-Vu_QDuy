@@ -6,12 +6,11 @@ class Queue{
 
     add(callback){
         if (this.callbackQueue.length > 1) {
-            setTimeout(callback, this.delay)
-            this.callbackQueue.shift()
+          this.callbackQueue.push(callback);
+          setTimeout(callback, this.delay)
         } else {
             this.callbackQueue.push(callback);
             callback();
-            this.callbackQueue.shift()
         }
     }
 }

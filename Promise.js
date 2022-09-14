@@ -44,4 +44,21 @@ const getApi = (keys) => {
 };  
 
 let keys = ['swift','rust','javascript','react', 'rx','ruby','rails','php','objective-c','html','css','pug']
-getApi(keys)
+// getApi(keys)
+
+
+const functionPromise = () => {
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < 5; i++) {
+      let numRandom = parseInt(Math.random() * 100)
+      if (numRandom % 2 === 0) {
+        resolve(numRandom)
+      }
+    }
+    reject(new Error('Promise failed'))
+  })
+};
+
+
+functionPromise().then(result => console.log(result))
+       .catch((err) => console.log(err))

@@ -21,12 +21,9 @@ class Queue {
         this.runcallback();
       }
     }, this.delay);
-    callback();
-    console.log(callback())
+    return new Promise((resolve, reject) => resolve(callback()))
   }
 
-  // getvalueofcallback(callback) {
-  // }
 }
 
 const cb1 = () => 1;
@@ -35,11 +32,11 @@ const cb3 = () => 3;
 const cb4 = () => 4;
 
 const queue1 = new Queue(1500);
-queue1.add(cb1);
-queue1.add(cb2);
+let a = queue1.add(cb1);
+let b = queue1.add(cb2);
 
-setTimeout(() => queue1.add(cb3), 6000);
-setTimeout(() => queue1.add(cb4), 5500);
+console.log(a.then(res => console.log(new Date().getTime(),res)))
+console.log(b.then(res => console.log(new Date().getTime(),res)))
 
 
 
@@ -72,7 +69,7 @@ const getApi = () => {
   .then(()=>getApi())
 };  
 
-getApi(keys)
+// getApi(keys)
 
 
 const functionPromise = () => {
